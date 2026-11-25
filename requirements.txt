@@ -1,0 +1,11 @@
+numpy
+pandas
+scipy
+scikit-learn
+xgboost
+matplotlib
+keras
+jax[cpu]
+requests
+# opcional, para usar RoBERTuito en la predicción electoral:
+# pysentimiento

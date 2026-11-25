@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>RestoIA - Módulo Comercial - POS</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", Arial, sans-serif; background: #f3f4f6; color: #1f2937; width: 1280px; height: 760px; }
+  .app { display: grid; grid-template-columns: 190px 1fr 360px; grid-template-rows: 56px 1fr; height: 100%; }
+  header { grid-column: 1 / 4; background: #1e293b; color: #fff; display: flex; align-items: center; padding: 0 18px; gap: 18px; }
+  header .logo { font-weight: 700; font-size: 19px; }
+  header .logo span { color: #f59e0b; }
+  header .caja { background: #16a34a; padding: 4px 10px; border-radius: 12px; font-size: 12px; }
+  header .buscar { flex: 1; }
+  header input { width: 360px; padding: 8px 12px; border-radius: 6px; border: none; font-size: 13px; }
+  header .user { font-size: 13px; }
+  nav { background: #fff; border-right: 1px solid #e5e7eb; padding: 14px 10px; }
+  nav a { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 8px; color: #374151; font-size: 14px; text-decoration: none; margin-bottom: 4px; }
+  nav a.act { background: #fef3c7; color: #92400e; font-weight: 600; }
+  nav .ico { width: 18px; text-align: center; }
+  main { padding: 16px 18px; overflow: hidden; }
+  .mesas { display: flex; gap: 8px; margin-bottom: 14px; align-items: center; }
+  .mesas b { font-size: 13px; margin-right: 4px; }
+  .mesa { width: 46px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; }
+  .libre { background: #22c55e; } .ocup { background: #ef4444; } .cuenta { background: #f59e0b; } .sel { outline: 3px solid #1e293b; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+  .tab { padding: 7px 14px; border-radius: 16px; background: #e5e7eb; font-size: 13px; }
+  .tab.act { background: #1e293b; color: #fff; }
+  .ia { background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 8px 12px; font-size: 13px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
+  .ia button { background: #4f46e5; color: #fff; border: none; border-radius: 6px; padding: 5px 10px; font-size: 12px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .prod { background: #fff; border-radius: 10px; padding: 10px; border: 1px solid #e5e7eb; height: 118px; display: flex; flex-direction: column; justify-content: space-between; }
+  .prod .img { height: 52px; border-radius: 6px; background: linear-gradient(135deg, #fde68a, #fca5a5); }
+  .prod .n { font-size: 13px; font-weight: 600; }
+  .prod .p { font-size: 13px; color: #6b7280; }
+  .agot { opacity: .45; }
+  aside { background: #fff; border-left: 1px solid #e5e7eb; padding: 16px; display: flex; flex-direction: column; }
+  aside h3 { font-size: 16px; margin-bottom: 2px; }
+  aside .sub { font-size: 12px; color: #6b7280; margin-bottom: 12px; }
+  .item { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px; }
+  .qty { display: flex; gap: 6px; align-items: center; }
+  .qty span { width: 22px; height: 22px; border-radius: 4px; background: #f3f4f6; display: inline-flex; align-items: center; justify-content: center; }
+  .x { color: #9ca3af; font-size: 11px; }
+  .tot { margin-top: auto; font-size: 13px; }
+  .tot div { display: flex; justify-content: space-between; padding: 3px 0; }
+  .tot .t { font-size: 18px; font-weight: 700; border-top: 1px solid #e5e7eb; padding-top: 8px; margin-top: 4px; }
+  .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .btn { padding: 12px; border-radius: 8px; text-align: center; font-weight: 600; font-size: 14px; }
+  .b1 { background: #e5e7eb; } .b2 { background: #16a34a; color: #fff; }
+  .badge { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: #111; color: #fff; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 2px solid #fff; box-shadow: 0 0 0 2px #111; z-index: 9; }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="logo">Resto<span>IA</span></div>
+    <div class="caja">Caja abierta · Turno mañana</div>
+    <div class="buscar"><input placeholder="Buscar producto o cliente..."></div>
+    <div class="user">Cajero: M. Ríos ▾</div>
+  </header>
+  <nav>
+    <a class="act"><span class="ico">▣</span>POS</a>
+    <a><span class="ico">☰</span>Pedidos</a>
+    <a><span class="ico">➤</span>Delivery</a>
+    <a><span class="ico">☺</span>Clientes</a>
+    <a><span class="ico">★</span>Fidelización</a>
+    <a><span class="ico">⇄</span>Integración</a>
+  </nav>
+  <main>
+    <div class="mesas"><b>Mesas</b>
+      <div class="mesa libre">1</div><div class="mesa ocup sel">2</div><div class="mesa ocup">3</div>
+      <div class="mesa cuenta">4</div><div class="mesa libre">5</div><div class="mesa libre">6</div>
+      <div class="mesa ocup">7</div><div class="mesa libre">8</div>
+    </div>
+    <div class="ia"><span>✦ Sugerencia IA: los clientes que piden <b>Lomo saltado</b> suelen agregar <b>Chicha morada 1 L</b></span><button>Agregar</button></div>
+    <div class="tabs"><div class="tab act">Platos de fondo</div><div class="tab">Entradas</div><div class="tab">Bebidas</div><div class="tab">Postres</div><div class="tab">Combos</div></div>
+    <div class="grid">
+      <div class="prod"><div class="img"></div><div class="n">Lomo saltado</div><div class="p">S/ 32.00</div></div>
+      <div class="prod"><div class="img"></div><div class="n">Ají de gallina</div><div class="p">S/ 26.00</div></div>
+      <div class="prod"><div class="img"></div><div class="n">Arroz con mariscos</div><div class="p">S/ 35.00</div></div>
+      <div class="prod agot"><div class="img"></div><div class="n">Seco de cabrito</div><div class="p">S/ 38.00</div></div>
+      <div class="prod"><div class="img"></div><div class="n">Ceviche clásico</div><div class="p">S/ 30.00</div></div>
+      <div class="prod"><div class="img"></div><div class="n">Pollo a la brasa ¼</div><div class="p">S/ 22.00</div></div>
+      <div class="prod"><div class="img"></div><div class="n">Tallarín saltado</div><div class="p">S/ 27.00</div></div>
+      <div class="prod"><div class="img"></div><div class="n">Chaufa de pollo</div><div class="p">S/ 24.00</div></div>
+    </div>
+  </main>
+  <aside>
+    <h3>Pedido · Mesa 2</h3>
+    <div class="sub">4 comensales · Mozo: J. Pérez · 12:42</div>
+    <div class="item"><div>Lomo saltado<br><span class="x">sin cebolla</span></div><div class="qty"><span>−</span>2<span>+</span></div><div>S/ 64.00</div></div>
+    <div class="item"><div>Ceviche clásico</div><div class="qty"><span>−</span>1<span>+</span></div><div>S/ 30.00</div></div>
+    <div class="item"><div>Chicha morada 1 L</div><div class="qty"><span>−</span>1<span>+</span></div><div>S/ 15.00</div></div>
+    <div class="item"><div>Inca Kola 500 ml</div><div class="qty"><span>−</span>2<span>+</span></div><div>S/ 12.00</div></div>
+    <div class="tot">
+      <div><span>Op. gravada</span><span>S/ 102.54</span></div>
+      <div><span>IGV (18 %)</span><span>S/ 18.46</span></div>
+      <div class="t"><span>Total</span><span>S/ 121.00</span></div>
+    </div>
+    <div class="btns"><div class="btn b1">Enviar a cocina</div><div class="btn b2">Cobrar</div></div>
+  </aside>
+</div>
+<div class="badge" style="left:676px;top:15px">A</div>
+<div class="badge" style="left:696px;top:72px">B</div>
+<div class="badge" style="left:782px;top:128px">C</div>
+<div class="badge" style="left:200px;top:232px">E</div>
+<div class="badge" style="left:1240px;top:70px">F</div>
+<div class="badge" style="left:1243px;top:574px">G</div>
+<div class="badge" style="left:196px;top:181px">D</div>
+</body>
+</html>

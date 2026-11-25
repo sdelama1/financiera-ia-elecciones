@@ -1,0 +1,4 @@
+ventas_mensuales,monto_solicitado,cuota_sobre_ingreso,max_dias_atraso_12m,prob_mora,banda
+7130.0,17770.0,0.63,8.0,0.059,Bajo (aprobación automática)
+10060.0,24870.0,1.546,0.0,0.261,Medio (revisión del analista)
+4610.0,11220.0,1.066,10.0,0.683,Alto (rechazo)

@@ -1,0 +1,4 @@
+Parámetros: 28106
+Épocas: 44
+Exactitud prueba: 0.9694
+Errores: 11 de 360

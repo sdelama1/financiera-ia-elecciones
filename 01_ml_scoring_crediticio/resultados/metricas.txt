@@ -1,0 +1,6 @@
+Regresión logística: AUC=0.772 Gini=0.545
+XGBoost: AUC=0.785 Gini=0.571
+XGBoost umbral 0,40: VP=124 FP=134 FN=372 VN=4370
+Bajo (aprobación automática)     0.817
+Medio (revisión del analista)    0.132
+Alto (rechazo)                   0.052
